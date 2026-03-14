@@ -13,9 +13,12 @@ export const Register =() =>{
 const onFinish: FormProps<FieldType>['onFinish'] = async (values) => {
   console.log('Success:', values);
 
-  const res = await loginApi("user@gmail.com","123456")
+  const res = await loginApi("user@gmail.com","12123456")
 
   console.log("res>>>",res)
+ if(res.error){
+  console.log(" đã lỗi r")
+ }
 };
 
 const onFinishFailed: FormProps<FieldType>['onFinishFailed'] = (errorInfo) => {

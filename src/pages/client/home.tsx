@@ -2,7 +2,9 @@ export const Home =() =>{
     return(
         <>
 
-        view  Home
+       <div style={{height:"120vh"}}>
+          Đây là trang home 
+       </div>
         </>
     )
 }

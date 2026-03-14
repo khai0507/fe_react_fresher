@@ -2,7 +2,7 @@ export const Book =() =>{
     return(
         <>
 
-        view  BOOK
+        đây là danh sách bướm
         </>
     )
 }

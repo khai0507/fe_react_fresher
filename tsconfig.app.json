@@ -12,10 +12,12 @@
       "@": ["./src/*"],
       "assets/*": ["./src/assets/*"],
       "components/*": ["./src/components/*"],
-      "Layout/*": ["./src/Layout/*"],
+      "Layout/*": ["src/shared/Layout/*"],
       "pages/*": ["./src/pages/*"],
       "styles/*": ["./src/styles/*"],
       "services/*": ["./src/services/*"],
+      "shared/*" :["./src/shared/*"],
+      "public/*" :["./src/public/*"]
 
     },
 

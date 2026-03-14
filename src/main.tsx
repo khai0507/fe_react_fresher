@@ -1,7 +1,7 @@
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { LayOut } from './Layout/layout.tsx';
+import { LayOut } from './shared/Layout/layout.tsx';
 import { Book } from './pages/client/book.tsx';
 import { Home } from './pages/client/home.tsx';
 import { Login } from './pages/client/auth/login.tsx';
@@ -13,6 +13,8 @@ const router = createBrowserRouter([
     path: "/",
     element: <LayOut/>,
     children :[
+
+      
 
       {
         index :true,
@@ -44,9 +46,6 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-    <App>
      <RouterProvider router={router} />
-
-    </App>
   </StrictMode>,
 )
