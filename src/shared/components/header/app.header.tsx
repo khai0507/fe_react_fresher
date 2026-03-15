@@ -1,12 +1,15 @@
-import { LoginOutlined, UserAddOutlined, UserOutlined } from "@ant-design/icons";
-import { Avatar, Breadcrumb, Dropdown, Layout, Menu, Space, theme } from "antd"
+import { CrownOutlined, LoginOutlined, UserAddOutlined, UserOutlined } from "@ant-design/icons";
+import { Avatar, Breadcrumb, ConfigProvider, Dropdown, Layout, Menu, Space, theme } from "antd"
 import { Content, Footer, Header } from "antd/es/layout/layout"
 import { useNavigate } from "react-router-dom";
-
-
+import dongsonBackground from "public/image.png"
+import quochuy from "public/quochuy.png"
+import { HeaderWrapper } from "./styled";
+import { LeftSection } from "./styled";
+import { EmblemIcon } from "./styled";
+import { StyledMenu } from "./styled";
 export const AppHeader = () =>{
 
-    const { Header} = Layout;
     const navigate = useNavigate()
     const navItems = [
     { key: "/home", label: "Home" },
@@ -25,44 +28,54 @@ export const AppHeader = () =>{
 
     return (
         <>
-        <Header style={{ position: 'sticky', 
-        top: 0,
-        zIndex: 1,
-        width: "100%",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between", 
-        padding: "0 24px",}}>
+        <HeaderWrapper
+        $bg ={dongsonBackground} 
+        >
         
-       <div style={{ display: "flex", alignItems: "center", flex: 1 }}>
-        <div 
-          className="demo-logo" 
-          style={{ width: 40, height: 40, background: "rgba(255,255,255,0.2)", borderRadius: '50%', marginRight: 24, cursor: 'pointer' }} 
-          onClick={() => navigate('/home')}
-        />
-        <Menu
-          theme="dark"
-          mode="horizontal"
-          selectedKeys={[location.pathname]} // Tự động sáng tab đang đứng
-          items={navItems}
-          style={{ flex: 1, minWidth: 0 }}
-          onClick={(e) => navigate(e.key)}
-        />
-      </div>
+       <LeftSection>
+        <ConfigProvider theme={{ token: { colorWarningHover: "#fff8dc" } }}>
+          <EmblemIcon $bg={quochuy} onClick={() => navigate("/home")} />
+        </ConfigProvider>
 
-      <div>
+        <ConfigProvider
+          theme={{
+            components: {
+              Menu: {
+                activeBarHeight: 0, 
+                itemColor: "#555", 
+                itemHoverColor: "#8b4513", // Màu chữ khi hover (Nâu đất)
+                itemHoverBg: "rgba(139, 69, 19, 0.08)", // Nền khi hover
+                horizontalItemSelectedColor: "#8b4513", // Màu chữ khi active
+                horizontalItemSelectedBg: "rgba(139, 69, 19, 0.15)", // Nền khi active
+                itemBorderRadius: 8, // Bo góc nút
+              },
+            },
+          }}
+        >
+        <StyledMenu
+            theme="light"
+            mode="horizontal"
+            selectedKeys={[location.pathname]}
+            items={navItems}
+            onClick={(e:any) => navigate(e.key)}
+          />
+
+        </ConfigProvider>
+      </LeftSection>
+
+ 
         <Dropdown
           menu={{ items: userMenuItems, onClick: (e) => navigate(e.key) }}
           trigger={['click', 'hover']}
           placement="bottomRight"
         >
-          <Space style={{ cursor: "pointer", color: "white" }}>
-            <Avatar icon={<UserOutlined />} />
+         <Space style={{ cursor: "pointer", color: "#333", fontWeight: 500 }}>
+            <Avatar icon={<UserOutlined />} style={{ backgroundColor: "#8b4513" }} />
             Tài khoản
           </Space>
         </Dropdown>
-      </div>
-      </Header>
+     
+      </HeaderWrapper>
         </>
     )
 }
