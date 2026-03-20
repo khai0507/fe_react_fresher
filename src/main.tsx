@@ -4,10 +4,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { LayOut } from './shared/Layout/layout.tsx';
 import { Book } from './pages/client/book.tsx';
 import { Home } from './pages/client/home.tsx';
-import { Login } from './pages/client/auth/login.tsx';
-import { Register } from './pages/client/auth/register.tsx';
+import { Login } from './features/auth/login/login.tsx';
+import { Register } from './features/auth/register/register.tsx';
 import 'styles/styles.scss'
-import App from './App.tsx';
+import { App } from 'antd';
+import { AppProvider } from './shared/components/context/app.context.tsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -31,6 +32,14 @@ const router = createBrowserRouter([
         path: "/Home",
         element: <Home/>,
       },
+      {
+        path: "/checkout",
+        element: <>checkout</>,
+      },
+       {
+        path: "/admin",
+        element: <>admin page</>,
+      },
      
     ]
   },
@@ -46,6 +55,11 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
-     <RouterProvider router={router} />
+     <App>
+
+      <AppProvider>
+         <RouterProvider router={router} />
+       </AppProvider>
+     </App>
   </StrictMode>,
 )

@@ -1,4 +1,4 @@
-export {};
+export { };
 
 declare global {
   interface IBackendRes<T> {
@@ -19,21 +19,25 @@ declare global {
   }
 
 
-  interface ILogin {
+  interface IUser {
 
-    access_token :string,
 
-    user: {
-      email: string,
-      phone: string,
-      fullName : string,
-      role: string,
-      avatar: string,
-      id:string
-    }
-
+    email: string,
+    phone: string,
+    fullName: string,
+    role: string,
+    avatar: string,
+    id: string
 
   }
+
+  interface IFetchAccount {
+    user: IUser
+
+  }
+
+
+
 
 
 }

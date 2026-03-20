@@ -1,6 +1,5 @@
 import { Breadcrumb, theme } from "antd"
 import { Content } from "antd/es/layout/layout"
-import { Children } from "react";
 
 export const ContentApp = ({children}:{ children: React.ReactNode }) => {
 
