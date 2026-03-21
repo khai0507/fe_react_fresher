@@ -1,44 +1,31 @@
-import React from "react"
-import { useCurrentApp } from "../context/app.context"
-import { useLocation } from "react-router-dom"
+import React from "react";
+import { Outlet } from "react-router-dom";
+import { useCurrentApp } from "../context/app.context";
+import { ResultPage } from "../components/Result";
+import { Role } from "../constants/role";
+import { LoadingCustomer } from "../components/loading/loading";
 
 interface IProps {
-    children : React.ReactNode
+  allowedRoles?: Role[];
+  children?: React.ReactNode;
 }
 
+const ProtectedRoute = ({ allowedRoles, children }: IProps) => {
+  const { isAuthenticated, user, isAppLoading } = useCurrentApp();
 
-const ProtectedRoute = (props:IProps) =>{
+  // 1. Đợi App khởi tạo/fetch token (Tránh lỗi F5 văng ra ngoài)
+  if (isAppLoading) return <LoadingCustomer isAppLoading />;
 
-    const {isAuthenticated,user} = useCurrentApp()
-    const loaction = useLocation()
-    const role = user?.role
+  // 2. Chưa đăng nhập
+  if (!isAuthenticated) return <ResultPage title="Bạn chưa đăng nhập" />;
 
-    const isAdminRouter = loaction.pathname.includes("admin")
-    if(isAuthenticated === false) {
-        return(
-            <>
-            m chưa đăng nhập
-            </>
-        )
-    }
+  // 3. Kiểm tra Role (Nếu route yêu cầu quyền)
+  if (allowedRoles && user && !allowedRoles.includes(user.role as Role)) {
+    return <ResultPage title="Bạn không có quyền truy cập trang này" />;
+  }
 
-    if(isAuthenticated === true && isAdminRouter===true){
-        if(role==="USER"){
-            return(
-                <>
+  // 4. Pass
+  return children ? <>{children}</> : <Outlet />;
+};
 
-                m k có quyền truy cập 
-                </>
-            )
-        }
-    }
-
-
-    return (
-        <>
-                {props.children}
-        </>
-    )
-}
-
-export default ProtectedRoute
+export default ProtectedRoute;

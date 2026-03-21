@@ -12,7 +12,7 @@
       "@/*": ["./src/*"],
       "assets/*": ["./src/assets/*"],
       "components/*": ["./src/components/*"],
-      "Layout/*": ["src/shared/components/client/LayoutClient/*"],
+      "Layout/*": ["src/modules/client/components/LayoutClient/*"],
       "pages/*": ["./src/pages/*"],
       "styles/*": ["./src/styles/*"],
       "services/*": ["./src/services/*"],

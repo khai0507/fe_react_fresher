@@ -1,25 +1,65 @@
 import { CrownOutlined, LoginOutlined, UserAddOutlined, UserOutlined } from "@ant-design/icons";
-import { Avatar, Breadcrumb, ConfigProvider, Dropdown, Layout, Menu, Space, theme } from "antd"
+import { Avatar, Breadcrumb, ConfigProvider, Dropdown, Layout, Menu, notification, Space, theme } from "antd"
 import { Content, Footer, Header } from "antd/es/layout/layout"
 import { useNavigate } from "react-router-dom";
 import dongsonBackground from "public/image.png"
 import quochuy from "public/quochuy.png"
 import { EmblemIcon, HeaderWrapper, LeftSection, StyledMenu } from "./styled";
 import { SideBar } from "../navbar/sidebar";
+import { logoutApi } from "@/service/api";
+import { useCurrentApp } from "@/shared/context/app.context";
 
 export const AppHeaderAdmin = () =>{
 
     const navigate = useNavigate()
-    const navItems = [
-    { key: "/home", label: "Home" },
-    { key: "/book", label: "Book" },
-  ];
+
+    const {setUser,setIsAuthenticated} = useCurrentApp()
+
+  //   const navItems = [
+  //   { key: "/home", label: "Home" },
+  //   { key: "/book", label: "Book" },
+  // ];
 
   // Menu Dropdown cho User
   const userMenuItems = [
     { key: "/login", label: "Đăng nhập", icon: <LoginOutlined /> },
     { key: "/register", label: "Đăng ký", icon: <UserAddOutlined /> },
+    { key: "logout", label: "logout", icon: <UserAddOutlined /> },
+
+
+    
   ];
+
+
+  const  logoutClick = async() =>{
+                const res =  await logoutApi();
+                if(res.data ){
+                    setUser(null)
+                    setIsAuthenticated(false)
+                    localStorage.removeItem("access_token")
+                  navigate("/login");
+                  notification.success(
+                    {message:"bạn đã đăng xuất thành công "}
+                  )
+
+
+                }
+                notification.error(       
+                               {message:"đăng xuất thất bại "}
+                              )
+  }
+  const handleMenuClick = async (e: any) => {
+        if (e.key === "logout") {
+            try {
+                logoutClick()
+                
+            } catch (error) {
+                console.error("Lỗi đăng xuất:", error);
+            }
+        } else {
+            navigate(e.key);
+        }
+    };
 
   
 
@@ -57,7 +97,7 @@ export const AppHeaderAdmin = () =>{
             theme="light"
             mode="horizontal"
             selectedKeys={[location.pathname]}
-            items={navItems}
+            // items={navItems}
             onClick={(e:any) => navigate(e.key)}
           />
 
@@ -66,7 +106,7 @@ export const AppHeaderAdmin = () =>{
 
  
         <Dropdown
-          menu={{ items: userMenuItems, onClick: (e) => navigate(e.key) }}
+          menu={{ items: userMenuItems, onClick :handleMenuClick   }}
           trigger={['click', 'hover']}
           placement="bottomRight"
         >

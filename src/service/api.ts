@@ -24,3 +24,10 @@ export const fetAccountApi = (): Promise<IBackendRes<IFetchAccount>> => {
     })
 
 }
+
+
+export const logoutApi = () => {
+    const urlBackend = "/api/v1/auth/logout"
+    return axios.post<any, IBackendRes<IRegister>>(urlBackend)
+
+}

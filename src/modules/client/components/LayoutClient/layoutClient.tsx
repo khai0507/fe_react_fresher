@@ -1,14 +1,14 @@
 import { Outlet } from "react-router-dom"
 import { AppHeader } from "../header/app.header"
 import { Layout } from "antd"
-import { ContentApp } from "@/shared/components/client/content/app.content"
-import { FooterApp } from "@/shared/components/client/footer/app.footer"
+import { ContentApp } from "@/modules/client/components/content/app.content"
+import { FooterApp } from "@/modules/client/components/footer/app.footer"
 import { useEffect, useState } from "react"
 import { fetAccountApi } from "@/service/api"
-import { useCurrentApp } from "../../../context/app.context"
+import { useCurrentApp } from "../../../../shared/context/app.context"
 import { ClipLoader } from "react-spinners"
 import { CSSProperties } from "styled-components"
-import { LoadingCustomer } from "../../loading/loading"
+import { LoadingCustomer } from "../../../../shared/components/loading/loading"
 export const LayOutClient = () => {
     const { setUser, setIsAuthenticated, isAppLoading, setIsAppLoading } = useCurrentApp()
 

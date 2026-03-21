@@ -39,7 +39,11 @@ export const Login = () => {
       setIsAuthenticated(true);
       setUser(res.data.user);
       localStorage.setItem("access_token", res.data.access_token);
-      navigate("/"); 
+      if (res.data.user.role === "ADMIN") { 
+        navigate("/admin");
+      } else {
+        navigate("/"); 
+      }
     }
   };
 
