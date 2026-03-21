@@ -9,6 +9,7 @@ import { Register } from './features/auth/register/register.tsx';
 import 'styles/styles.scss'
 import { App } from 'antd';
 import { AppProvider } from './shared/components/context/app.context.tsx';
+import ProtectedRoute from './shared/auth/auth.tsx';
 const router = createBrowserRouter([
   {
     path: "/",
@@ -34,11 +35,23 @@ const router = createBrowserRouter([
       },
       {
         path: "/checkout",
-        element: <>checkout</>,
+        element: <>
+        
+          <ProtectedRoute>
+          <div>checkout</div>
+
+          </ProtectedRoute>
+        
+        </>,
       },
        {
         path: "/admin",
-        element: <>admin page</>,
+        element: <>
+        <ProtectedRoute>
+          <div>admin page</div>
+
+          </ProtectedRoute>
+        </>,
       },
      
     ]
