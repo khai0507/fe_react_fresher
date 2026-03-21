@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState } from "react";
+import { fetAccountApi } from "@/service/api";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 interface IAppContext {
   isAuthenticated: boolean
@@ -19,7 +20,25 @@ export const AppProvider = (prop: TProps) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
   const [user, setUser] = useState<IUser | null>(null)
   const [isAppLoading, setIsAppLoading] = useState<boolean>(false)
+  
+  const fetchAccount = async () => {
+        setIsAppLoading(true); // Bật loading TRƯỚC khi gọi API
+        try {
+            const res = await fetAccountApi();
+            if (res && res.data) {
+                setUser(res.data.user);
+                setIsAuthenticated(true);
+            }
+        } catch (error) {
+            console.error(error);
+        } finally {
+            setIsAppLoading(false); // Tắt loading dù API thành công hay thất bại
+        }
+    };
+    useEffect(() => {
+        fetchAccount()
 
+    }, [])
 
 
 
@@ -41,4 +60,5 @@ export const useCurrentApp = () => {
 
   return currentAppContext;
 };
+
 

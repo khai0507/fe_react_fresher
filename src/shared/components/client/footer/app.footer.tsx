@@ -9,7 +9,7 @@ export const FooterApp =() =>{
 
         
       <Footer style={{ textAlign: 'center' }}>
-       địt nhau có gì đau
+         oke
       </Footer>
         </>
     )

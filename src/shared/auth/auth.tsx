@@ -1,5 +1,5 @@
 import React from "react"
-import { useCurrentApp } from "../components/context/app.context"
+import { useCurrentApp } from "../context/app.context"
 import { useLocation } from "react-router-dom"
 
 interface IProps {

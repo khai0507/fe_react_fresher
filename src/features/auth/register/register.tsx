@@ -2,7 +2,7 @@ import { Button, Form, FormProps, Input, Typography, ConfigProvider, App } from 
 import { Link, useNavigate } from "react-router-dom";
 import { RegisterContainer, BaseBackground, BackgroundPattern, BackgroundOverlay, FormBox } from "./styles";
 import { registerApi } from "@/service/api";
-import { useCurrentApp } from "@/shared/components/context/app.context";
+import { useCurrentApp } from "@/shared/context/app.context";
 
 const { Title, Text } = Typography;
 

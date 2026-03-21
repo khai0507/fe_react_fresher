@@ -20,6 +20,8 @@ export const AppHeader = () =>{
   const userMenuItems = [
     { key: "/login", label: "Đăng nhập", icon: <LoginOutlined /> },
     { key: "/register", label: "Đăng ký", icon: <UserAddOutlined /> },
+    // { key: "/logout", label: "Đăng ký", icon: <UserAddOutlined /> },
+
   ];
 
   

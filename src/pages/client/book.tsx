@@ -1,4 +1,4 @@
-import { useCurrentApp } from "@/shared/components/context/app.context"
+import { useCurrentApp } from "@/shared/context/app.context"
 
 export const Book =() =>{
     const {user} = useCurrentApp()

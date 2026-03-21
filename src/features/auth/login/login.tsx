@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 // Tái sử dụng lại đúng file styles của Register
 import { RegisterContainer, BaseBackground, BackgroundPattern, BackgroundOverlay, FormBox } from "../register/styles"; 
 import { loginApi } from "@/service/api"; // Đảm bảo đã export loginApi từ đây
-import { useCurrentApp } from "@/shared/components/context/app.context";
+import { useCurrentApp } from "@/shared/context/app.context";
 
 const { Title, Text } = Typography;
 
