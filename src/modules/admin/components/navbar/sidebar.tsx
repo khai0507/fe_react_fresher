@@ -1,36 +1,44 @@
-import { UserOutlined } from "@ant-design/icons";
+import { DashboardOutlined, UserOutlined } from "@ant-design/icons";
 import { Menu, MenuProps } from "antd";
 import Sider from "antd/es/layout/Sider";
-import React, { useState } from "react";
+import React from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const SideBar = () => {
-    const [collapsed, setCollapsed] = useState(false);
-    const items2: MenuProps['items'] = [
-  UserOutlined,
-].map((icon, index) => {
-  const key = String(index + 1);
+const navigate = useNavigate();
+  const location = useLocation();
+  const menuItems: MenuProps['items'] = [
+    {
+      key: "/admin",
+      icon: <DashboardOutlined />,
+      label: "Dashboard",
+      onClick: () => navigate("/admin"),
+    },
+    {
+      key: "user-management",
+      icon: <UserOutlined />,
+      label: "Quản lý User",
+      children: [
+        {
+          key: "/admin/manager",
+          label: "Danh sách User",
+          onClick: () => navigate("/admin/manager"),
+        },
+        // Thêm các sub-menu khác ở đây nếu cần (vd: Thêm mới User)
+      ],
+    },
+  ];
 
-  return {
-    key: `sub${key}`,
-    icon: React.createElement(icon),
-    label: `subnav ${key}`,
-    children: Array.from({ length: 4 }).map((_, j) => {
-      const subKey = index * 4 + j + 1;
-      return {
-        key: subKey,
-        label: `option${subKey}`,
-      };
-    }),
-  };
-});
     return (
         <Sider width={200} style={{ background: "#333" }}>
           <Menu
-            mode="inline"
-            defaultSelectedKeys={['1']}
-            defaultOpenKeys={['sub1']}
-            style={{ height: '100%', borderInlineEnd: 0 }}
-            items={items2}
+           mode="inline"
+        // Tự động active menu dựa trên URL hiện tại
+        selectedKeys={[location.pathname]} 
+        // Mở sẵn tab Quản lý User
+        defaultOpenKeys={["user-management"]} 
+        style={{ height: "100%", borderInlineEnd: 0 }}
+        items={menuItems}
           />
         </Sider>
     )

@@ -7,13 +7,15 @@ import { Home } from './modules/client/pages/home.tsx';
 import { Login } from './features/auth/login/login.tsx';
 import { Register } from './features/auth/register/register.tsx';
 import 'styles/styles.scss'
-import { App } from 'antd';
+import { App, ConfigProvider } from 'antd';
 import { AppProvider } from './shared/context/app.context.tsx';
 import ProtectedRoute from './shared/auth/auth.tsx';
 import { LayoutAdmin } from './modules/admin/components/layoutAdmin/layoutAdmin.tsx';
 import { Dashboard } from './modules/admin/pages/dashboard.tsx';
-import { Manager } from './modules/admin/pages/manage.tsx';
+import  Manager  from './modules/admin/pages/manage.tsx';
 import { Role } from './shared/constants/role.ts';
+import enUS from 'antd/locale/en_US';
+
 const router = createBrowserRouter([
   {
     path: "/login",
@@ -61,7 +63,10 @@ createRoot(document.getElementById('root')!).render(
      <App>
 
       <AppProvider>
+        <ConfigProvider locale={enUS}>
          <RouterProvider router={router} />
+
+        </ConfigProvider>
        </AppProvider>
      </App>
   </StrictMode>,
