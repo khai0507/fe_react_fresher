@@ -12,7 +12,7 @@ import { AppProvider } from './shared/context/app.context.tsx';
 import ProtectedRoute from './shared/auth/auth.tsx';
 import { LayoutAdmin } from './modules/admin/components/layoutAdmin/layoutAdmin.tsx';
 import { Dashboard } from './modules/admin/pages/dashboard.tsx';
-import  Manager  from './modules/admin/pages/manage.tsx';
+import  Manager  from './modules/admin/pages/manageUsere/manage.tsx';
 import { Role } from './shared/constants/role.ts';
 import enUS from 'antd/locale/en_US';
 

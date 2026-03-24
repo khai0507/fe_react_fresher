@@ -1,4 +1,4 @@
-import { fetAccountApi } from "@/service/api";
+import { fetAccountApi } from "@/services/api";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 interface IAppContext {

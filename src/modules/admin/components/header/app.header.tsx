@@ -6,7 +6,7 @@ import dongsonBackground from "public/image.png"
 import quochuy from "public/quochuy.png"
 import { EmblemIcon, HeaderWrapper, LeftSection, StyledMenu } from "./styled";
 import { SideBar } from "../navbar/sidebar";
-import { logoutApi } from "@/service/api";
+import { logoutApi } from "@/services/api";
 import { useCurrentApp } from "@/shared/context/app.context";
 
 export const AppHeaderAdmin = () =>{
